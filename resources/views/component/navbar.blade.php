@@ -10,8 +10,11 @@
             <li @if($current=="customers" ) class="nav-item active" @else class="nav-item" @endif>
                 <a class="nav-link" href="/customers">Clientes</a>
             </li>
+            <li @if($current=="technicians" ) class="nav-item active" @else class="nav-item" @endif>
+                <a class="nav-link" href="/technicians">Técnicos</a>
+            </li>
             <li @if($current=="tickets" ) class="nav-item active" @else class="nav-item" @endif>
-                <a class="nav-link" href="/chamados">Chamados</a>
+                <a class="nav-link" href="/tickets">Chamados</a>
             </li>
         </ul>
     </div>

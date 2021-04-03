@@ -28,7 +28,7 @@
                 <br>
 
                 <label for="cus_zip_code">CEP</label>
-                <input type="text" class="form-control" name="cus_zip_code" id="cus_zip_code" pattern="[0-9]{5}-[0-9]{3}" placeholder="00000-000">
+                <input type="text" class="form-control" name="cus_zip_code" id="cus_zip_code" pattern="[0-9]{5}[0-9]{3}" placeholder="00000-000">
                 <br>
 
                 <label for="cus_city">Cidade</label>
