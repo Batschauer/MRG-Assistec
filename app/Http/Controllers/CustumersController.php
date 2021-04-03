@@ -20,6 +20,18 @@ class CustumersController extends Controller
 
     public function store(Request $request)
     {
+        $rule = [
+            'cus_name' => 'required|max:255',
+            'cus_birthday' => 'required'
+        ];
+
+        $messages = [
+            'required' => 'O atributo :attribute não pode estar em branco',
+            'cus_name.required' => 'É necessário informar um nome'
+        ];
+
+        $request->validate($rule, $messages);
+
         $cus = new Customer();
         $cus->name = $request->input('cus_name');
         $cus->birthday = $request->input('cus_birthday');
