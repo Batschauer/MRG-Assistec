@@ -1,8 +1,8 @@
 @extends('layout.app', ['current' => 'technicians'])
 
 @section('body')
-<div class="card border">
-    <div class="card-body">
+<div>
+    <div>
         <h5 class="card-title">Cadastro de Técnicos</h5>
         @if(count($technicians) > 0)
         <table class="table table-ordered table-hover">
@@ -38,7 +38,7 @@
         @endif
     </div>
 </div>
-<div class="card-footer">
+<div>
     <a href="/technicians/create" class="btn bt-sm btn-primary" role="button">Novo Técnico</a>
 </div>
 @endsection

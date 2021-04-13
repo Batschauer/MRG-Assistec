@@ -1,7 +1,7 @@
 @extends('layout.app', ["current" => "tickets"])
 @section('body')
-<div class="card border">
-    <div class="card-body">
+<div>
+    <div>
         <form action="{{ route('tickets.store') }}" method="POST">
             @csrf
             <div class="form-group">
@@ -41,10 +41,6 @@
 
                 <label for="tic_customer_id">ID Cliente</label>
                 <input type="text" class="form-control" name="tic_customer_id" id="tic_customer_id">
-                <br>
-
-                <label for="tic_technician_id">ID Técnico</label>
-                <input type="text" class="form-control" name="tic_technician_id" id="tic_technician_id">
                 <br>
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Salvar</button>

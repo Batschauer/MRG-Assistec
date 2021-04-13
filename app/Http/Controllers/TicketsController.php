@@ -11,7 +11,16 @@ class TicketsController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::all();
+        $aberto = Ticket::where('status', 'Aberto')->get();
+
+        $na_fila = Ticket::where('status', 'Na fila')->get();
+
+        $em_andamento = Ticket::where('status', 'Em andamento')->get();
+
+        $fechado = Ticket::where('status', 'Fechado')->get();
+
+        $tickets = array($aberto, $na_fila, $em_andamento, $fechado);
+
         return view('tickets', compact('tickets'));
     }
 
@@ -30,7 +39,6 @@ class TicketsController extends Controller
         $tic->opening_date = $request->input('tic_opening_date');
         $tic->closing_date = $request->input('tic_closing_date');
         $tic->customer_id = $request->input('tic_customer_id');
-        $tic->technician_id = $request->input('tic_technician_id');
 
         $tic->save();
 
@@ -62,7 +70,18 @@ class TicketsController extends Controller
             $tic->opening_date = $request->input('tic_opening_date');
             $tic->closing_date = $request->input('tic_closing_date');
             $tic->customer_id = $request->input('tic_customer_id');
-            $tic->technician_id = $request->input('tic_technician_id');
+
+            $tic->save();
+        }
+
+        return redirect('/tickets');
+    }
+
+    public function updateStatus($id, $status)
+    {
+        $tic = Ticket::find($id);
+        if (isset($tic)) {
+            $tic->status = $status;
 
             $tic->save();
         }

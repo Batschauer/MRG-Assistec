@@ -1,7 +1,7 @@
 @extends('layout.app', ["current" => "technicians"])
 @section('body')
-<div class="card border">
-    <div class="card-body">
+<div>
+    <div>
         <!--Configurar o actions para chamar o método update-->
         <form action="{{ route('technicians.update', $tec['id']) }}" method="POST">
             @csrf

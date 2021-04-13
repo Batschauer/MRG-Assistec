@@ -23,8 +23,6 @@ class CreateTicketsTable extends Migration
             $table->date('closing_date')->nullable(true);
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->integer('technician_id')->unsigned();
-            $table->foreign('technician_id')->references('id')->on('technicians');
             $table->timestamps();
         });
     }

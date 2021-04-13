@@ -1,56 +1,62 @@
-<?php use App\Http\Controllers\TicketsController; ?>
+<?php
+
+use App\Http\Controllers\TicketsController;
+use App\Http\View\Components\card\card;
+?>
 
 @extends('layout.app', ['current' => 'tickets'])
 
 @section('body')
-<div class="card border">
-    <div class="card-body">
-        <h5 class="card-title">Chamados</h5>
-        @if(count($tickets) > 0)
-        <table class="table table-ordered table-hover">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Título</th>
-                    <th>Descrição</th>
-                    <th>Status</th>
-                    <th>Prioridade</th>
-                    <th>Data de Abertura</th>
-                    <th>Data de Encerramento</th>
-                    <th>Cliente</th>
-                    <th>Técnico</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($tickets as $tic)
-                <tr>
-                    <td> {{ $tic->id }}</td>
-                    <td> {{ $tic->title }}</td>
-                    <td> {{ $tic->description }}</td>
-                    <td> {{ $tic->status }}</td>
-                    <td> {{ $tic->priority }}</td>
-                    <td> {{ $tic->opening_date }}</td>
-                    <td> {{ $tic->closing_date }}</td>
-                    <td> {{ TicketsController::getCustomerName($tic['id']) }}</td>
-                    <td> {{ TicketsController::getTechnicianName($tic['id']) }}</td>
-                    <td>
-                        <a href="{{ route('tickets.edit', $tic['id']) }}" class="btn btn-sm btn-primary">Editar</a>
+<div class="card-deck h-100 flex-container">
 
-                        <form action="{{ route('tickets.destroy', $tic['id']) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" class="btn btn-sm btn-danger" value="Apagar">
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        @endif
+    <div class="card-columns h-100 w-25 p-3 border border-primary bg-dark" id="ColunaAberto" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card-columns-title" draggable="false">
+            <h5 class="card-title">Abertos</h5>
+            <a href="/tickets/create" class="btn btn-success btn-sm card-btn-add">+</a>
+        </div>
+
+    @if(count($tickets))
+        @foreach($tickets[0] as $tkt)
+            <x-card.card :ticket="$tkt"/>
+        @endforeach
+    @endif
+    
     </div>
-</div>
-<div class="card-footer">
-    <a href="/tickets/create" class="btn bt-sm btn-primary" role="button">Abrir Chamado</a>
+
+    <div class="card-columns h-100 w-25 p-3 border border-primary bg-dark" id="ColunaNaFila" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card-columns-title" draggable="false">
+            <h5 class="card-title">Na fila</h5>
+        </div>
+
+    @if(count($tickets))
+        @foreach($tickets[1] as $tkt)
+            <x-card.card :ticket="$tkt"/>
+        @endforeach
+    @endif
+    </div>
+
+    <div class="card-columns h-100 w-25 p-3 border border-primary bg-dark" id="ColunaEmAtendimento" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card-columns-title" draggable="false">
+            <h5 class="card-title">Em andamento</h5>
+        </div>
+
+    @if(count($tickets))
+        @foreach($tickets[2] as $tkt)
+            <x-card.card :ticket="$tkt"/>
+        @endforeach
+    @endif
+    </div>
+
+    <div class="card-columns h-100 w-25 p-3 border border-primary bg-dark" id="ColunaAtendido" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card-columns-title" draggable="false">
+            <h5 class="card-title">Fechado</h5>
+        </div>
+
+    @if(count($tickets))
+        @foreach($tickets[3] as $tkt)
+            <x-card.card :ticket="$tkt"/>
+        @endforeach
+    @endif
+    </div>
 </div>
 @endsection

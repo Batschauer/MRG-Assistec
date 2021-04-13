@@ -1,8 +1,8 @@
 @extends('layout.app', ['current' => 'customers'])
 
 @section('body')
-<div class="card border">
-    <div class="card-body">
+<div>
+    <div>
         <h5 class="card-title">Cadastro de Clientes</h5>
         @if(count($customers) > 0)
         <table class="table table-ordered table-hover">
@@ -48,7 +48,7 @@
         @endif
     </div>
 </div>
-<div class="card-footer">
+<div>
     <a href="/customers/create" class="btn bt-sm btn-primary" role="button">Novo Cliente</a>
 </div>
 @endsection

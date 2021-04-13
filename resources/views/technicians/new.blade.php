@@ -1,7 +1,7 @@
 @extends('layout.app', ["current" => "technicians"])
 @section('body')
-<div class="card border">
-    <div class="card-body">
+<div>
+    <div>
         <form action="{{ route('technicians.store') }}" method="POST">
             @csrf
             <div class="form-group">

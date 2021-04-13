@@ -1,7 +1,7 @@
 @extends('layout.app', ["current" => "custumers"])
 @section('body')
-<div class="card border">
-    <div class="card-body">
+<div>
+    <div>
         <!--Configurar o actions para chamar o método update-->
         <form action="{{ route('customers.update', $cus['id']) }}" method="POST">
             @csrf
